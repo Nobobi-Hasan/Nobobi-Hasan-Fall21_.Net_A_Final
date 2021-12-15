@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using AutoMapper;
+using BEL;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,21 +16,21 @@ namespace BLL
             DataAccessFactory.CartDataAcess().AddToCart(src, uname);
         }
 
-        public static void ClearCart(string uname)
+        public static List<CartModel> GetCartByUsername(string uname)
         {
-            DataAccessFactory.CartDataAcess().ClearCart(uname);
-        }
-
-        public static void DeleteCart(int src)
-        {
-            DataAccessFactory.CartDataAcess().DeleteCart(src);
-        }
-
-        public static List<Cart> GetCartByUsername(string uname)
-        {
+            var config = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Cart, CartModel>();
+            });
+            var mapper = new Mapper(config);
             var da = DataAccessFactory.CartDataAcess();
-            var data = da.GetCartByUsername(uname);
+            var data = mapper.Map<List<CartModel>>(da.GetCartByUsername(uname));
             return data;
+        }
+
+        public static void PlusCart(int src)
+        {
+            DataAccessFactory.CartDataAcess().PlusCart(src);
         }
 
         public static void MinusCart(int src)
@@ -36,9 +38,19 @@ namespace BLL
             DataAccessFactory.CartDataAcess().MinusCart(src);
         }
 
-        public static void PlusCart(int src)
+        public static void DeleteCart(int src)
         {
-            DataAccessFactory.CartDataAcess().PlusCart(src);
+            DataAccessFactory.CartDataAcess().DeleteCart(src);
         }
+
+
+        public static void ClearCart(string uname)
+        {
+            DataAccessFactory.CartDataAcess().ClearCart(uname);
+        }
+        
+
+
+        
     }
 }

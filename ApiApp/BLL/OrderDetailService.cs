@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class OrderDetailService
+    public class OrderDetailService
     {
         public static List<OrderDetailModel> GetAll()
         {
@@ -20,6 +20,18 @@ namespace BLL
             var mapper = new Mapper(config);
             var da = DataAccessFactory.OrderDetailDataAcess();
             var data = mapper.Map<List<OrderDetailModel>>(da.GetAll());
+            return data;
+        }
+
+        public static List<OrderDetailModel> GetDetail(int id)
+        {
+            var config = new MapperConfiguration(c =>
+            {
+                c.CreateMap<OrderDetail, OrderDetailModel>();
+            });
+            var mapper = new Mapper(config);
+            var da = DataAccessFactory.OrderDetailDataAcess();
+            var data = mapper.Map<List<OrderDetailModel>>(da.GetDetail(id));
             return data;
         }
 

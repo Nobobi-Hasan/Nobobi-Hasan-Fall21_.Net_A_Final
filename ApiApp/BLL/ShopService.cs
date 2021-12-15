@@ -23,15 +23,7 @@ namespace BLL
             DataAccessFactory.ShopDataAcess().Add(data);
         }
 
-        public static void ApproveShop(string uname)
-        {
-            DataAccessFactory.ShopDataAcess().ApproveShop(uname);
-        }
-
-        public static void DeclineShop(string uname)
-        {
-            DataAccessFactory.ShopDataAcess().DeclineShop(uname);
-        }
+    
 
 
         public static void Delete(ShopModel p)
@@ -82,6 +74,16 @@ namespace BLL
             var da = DataAccessFactory.ShopDataAcess();
             var data = mapper.Map<ShopModel>(da.GetOneShop(uname));
             return data;
+        }
+
+        public static void ApproveShop(string uname)
+        {
+            DataAccessFactory.ShopDataAcess().ApproveShop(uname);
+        }
+
+        public static void DeclineShop(string uname)
+        {
+            DataAccessFactory.ShopDataAcess().DeclineShop(uname);
         }
 
         public static List<ShopModel> GetPendingShop()

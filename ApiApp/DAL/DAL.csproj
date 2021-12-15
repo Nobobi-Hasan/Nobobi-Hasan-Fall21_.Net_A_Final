@@ -69,8 +69,10 @@
       <DependentUpon>KetabKhanaF.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeRepo.cs" />
+    <Compile Include="IBook.cs" />
     <Compile Include="ICart.cs" />
     <Compile Include="IOrder.cs" />
+    <Compile Include="IOrderDetail.cs" />
     <Compile Include="IRepo.cs" />
     <Compile Include="ISalary.cs" />
     <Compile Include="IShop.cs" />

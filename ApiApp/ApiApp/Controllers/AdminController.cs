@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ApiApp.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class AdminController : ApiController
     {
 
@@ -126,6 +128,184 @@ namespace ApiApp.Controllers
         }
 
 
+
+
+        // Shop ###################################
+
+        [Route("api/Admin/EditShop")]
+        [HttpPost]
+        public void EditShop(ShopModel n)
+        {
+            ShopService.Edit(n);
+        }
+
+        [Route("api/Admin/DeleteShop")]
+        [HttpPost]
+        public void DeleteShop(ShopModel n)
+        {
+            ShopService.Delete(n);
+        }
+
+        [Route("api/Admin/AllShops")]
+        [HttpGet]
+        public List<ShopModel> GetAllShops()
+        {
+
+            return ShopService.GetAllShops();
+        }
+
+        [Route("api/Admin/GetOneShop/{uname}")]
+        [HttpGet]
+        public ShopModel GetOneShop(string uname)
+        {
+            return ShopService.GetOneShop(uname);
+        }
+
+        [Route("api/Admin/ApproveShop/{uname}")]
+        [HttpGet]
+        public void ApproveShop(string uname)
+        {
+            ShopService.ApproveShop(uname);
+        }
+
+        [Route("api/Admin/DeclineShop/{uname}")]
+        [HttpGet]
+        public void DeclineShop(string uname)
+        {
+            ShopService.DeclineShop(uname);
+        }
+
+        [Route("api/Admin/ApprovedShops")]
+        [HttpGet]
+        public List<ShopModel> GetApprovedShop()
+        {
+
+            return ShopService.GetApprovedShop();
+        }
+        
+
+        [Route("api/Admin/PendingShop")]
+        [HttpGet]
+        public List<ShopModel> GetPendingShop()
+        {
+
+            return ShopService.GetPendingShop();
+        }
+
+
+        //Books #############################
+
+
+        [Route("api/Admin/AllBooks")]
+        [HttpGet]
+        public List<BookModel> GetAllBooks()
+        {
+
+            return BookService.GetAll();
+        }
+
+
+        //Salary #############################
+
+        [Route("api/Admin/ApprovedSalary")]
+        [HttpGet]
+        public List<SalaryModel> GetApprovedSalary()
+        {
+
+            return SalaryService.GetApproved();
+        }
+
+        [Route("api/Admin/PendingSalary")]
+        [HttpGet]
+        public List<SalaryModel> GetPendingSalary()
+        {
+
+            return SalaryService.GetPending();
+        }
+
+
+        [Route("api/Admin/ApproveSalary/{id}")]
+        [HttpGet]
+        public void ApproveSalary(int id)
+        {
+            SalaryService.Approve(id);
+        }
+
+        [Route("api/Admin/DeclineSalary/{id}")]
+        [HttpGet]
+        public void DeclineSalary(int id)
+        {
+            SalaryService.Decline(id);
+        }
+
+
+        //Order ###########################################
+
+        [Route("api/Admin/AllOrders")]
+        [HttpGet]
+        public List<OrderModel> GetAllOrders()
+        {
+
+            return OrderService.GetAllOrders();
+        }
+
+        [Route("api/Admin/OrderDetail/{id}")]
+        [HttpGet]
+        public List<OrderDetailModel> GetOrderDetail(int id)
+        {
+
+            return OrderDetailService.GetDetail(id);
+        }
+
+
+        //Singels ###########################################
+        [Route("api/Admin/AllTransactions")]
+        [HttpGet]
+        public List<TransactionModel> GetAllTransactions()
+        {
+
+            return TransactionService.GetAll();
+        }
+
+        [Route("api/Admin/AllStatements")]
+        [HttpGet]
+        public List<StatementModel> GetAllStatements()
+        {
+
+            return StatementService.GetAll();
+        }
+
+        [Route("api/Admin/AllSupport")]
+        [HttpGet]
+        public List<SupportModel> GetAllSupport()
+        {
+
+            return SupportService.GetAll();
+        }
+
+        [Route("api/Admin/Profile")]
+        [HttpGet]
+        public AdminModel Profile()
+        {
+            //string uname = User.Identity.Name;
+            string uname = "admin1";
+            return AdminService.GetOne(uname);
+        }
+
+
+        [Route("api/Admin/EditProfile")]
+        [HttpPost]
+        public void EditProfile(AdminModel n)
+        {
+            AdminService.Edit(n);
+        }
+
+        [Route("api/Admin/DeleteProfile")]
+        [HttpPost]
+        public void DeleteProfile(AdminModel n)
+        {
+            AdminService.Delete(n);
+        }
 
     }
 }

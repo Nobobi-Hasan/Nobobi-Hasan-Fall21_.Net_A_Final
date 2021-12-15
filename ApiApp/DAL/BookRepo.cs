@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class BookRepo : IRepo<Book, int, string>
+    class BookRepo : IBook<Book, int, string>
     {
         KetabKhanaFEntities db;
         public BookRepo(KetabKhanaFEntities db)
@@ -57,12 +57,12 @@ namespace DAL
             return db.Books.FirstOrDefault(e => e.Id == id);
         }
 
-
-        //Extra###################################################
-
-        public void Add(Book e, string src)
+        public List<Book> SrcBook(string src)
         {
-            throw new NotImplementedException();
+            var entity = (from e in db.Books
+                          where e.Title == src
+                          select e).ToList();
+            return entity;
         }
     }
 }

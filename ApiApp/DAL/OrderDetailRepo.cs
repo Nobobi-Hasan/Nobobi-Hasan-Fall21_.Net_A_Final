@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class OrderDetailRepo : IRepo<OrderDetail, string>
+    class OrderDetailRepo : IOrderDetail<OrderDetail, string, int>
     {
         KetabKhanaFEntities db;
         public OrderDetailRepo(KetabKhanaFEntities db)
@@ -19,6 +19,14 @@ namespace DAL
         public List<OrderDetail> GetAll()
         {
             return db.OrderDetails.ToList();
+        }
+
+        public List<OrderDetail> GetDetail(int id)
+        {
+            var entity = (from e in db.OrderDetails
+                          where e.OrderId == id
+                          select e).ToList();
+            return entity;
         }
 
         public List<OrderDetail> GetByShopName(string src)

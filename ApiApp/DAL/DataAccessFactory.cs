@@ -35,7 +35,7 @@ namespace DAL
         }
 
 
-        public static IRepo<Book, int, string> BookDataAcess()
+        public static IBook<Book, int, string> BookDataAcess()
         {
             return new BookRepo(db);
         }
@@ -46,7 +46,7 @@ namespace DAL
         }
 
 
-        public static IRepo<OrderDetail, string> OrderDetailDataAcess()
+        public static IOrderDetail<OrderDetail, string, int> OrderDetailDataAcess()
         {
             return new OrderDetailRepo(db);
         }

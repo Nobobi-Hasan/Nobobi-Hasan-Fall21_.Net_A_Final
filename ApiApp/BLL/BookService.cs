@@ -84,5 +84,17 @@ namespace BLL
             var data = mapper.Map<BookModel>(da.GetOne(id));
             return data;
         }
+
+        public static List<BookModel> SrcBook(string src)
+        {
+            var config = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Book, BookModel>();
+            });
+            var mapper = new Mapper(config);
+            var da = DataAccessFactory.BookDataAcess();
+            var data = mapper.Map<List<BookModel>>(da.SrcBook(src));
+            return data;
+        }
     }
 }
