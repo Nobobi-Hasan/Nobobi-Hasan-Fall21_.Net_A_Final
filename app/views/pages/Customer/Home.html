@@ -1,0 +1,33 @@
+
+<div>
+  <h1>All Books</h1>
+  <h1>{{test}}</h1>
+  <h1>{{cart}}</h1>
+
+    <table border="1">
+      <tr>
+        <th>Id</th>
+        <th>Book Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Edition</th>
+        <th>Price</th>
+        <th>Shop Name</th>
+        <th>Quantity</th>
+        <th>Thumbnail</th>
+        <th>Action</th>
+      </tr>
+      <tr ng-repeat="p in AllBooks">
+          <td>{{p.Id}}</td>
+          <td>{{p.Title}}</td>
+          <td>{{p.Author}}</td>
+          <td>{{p.Publisher}}</td>
+          <td>{{p.Edition}}</td>
+          <td>{{p.Price}}</td>
+          <td>{{p.ShopName}}</td>
+          <td>{{p.Quantity}}</td>
+          <td>{{p.Thumbnail}}</td>
+          <td><a href="#!Customer/Book/AddToCart/{{p.Id}}">Add To Cart</a></td>
+      </tr>
+    </table>
+</div>
