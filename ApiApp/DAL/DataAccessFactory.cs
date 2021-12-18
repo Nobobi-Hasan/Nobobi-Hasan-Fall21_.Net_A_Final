@@ -52,7 +52,7 @@ namespace DAL
         }
 
 
-        public static IOrder<Order, int, string> OrderDataAcess()
+        public static IOrder<Order, int, string, List<Book>> OrderDataAcess()
         {
             return new OrderRepo(db);
         }

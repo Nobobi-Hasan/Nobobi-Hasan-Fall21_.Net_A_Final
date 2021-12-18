@@ -25,6 +25,14 @@ namespace ApiApp.Controllers
             return BookService.GetAll();
         }
 
+        [Route("api/Customer/OneBook/{bId}")]
+        [HttpGet]
+        public BookModel OneBook(int bId)
+        {
+
+            return BookService.GetOne(bId);
+        }
+
         [Route("api/Customer/AddToCart/{bId}")]
         [HttpPost]
         public void AddToCart(int bId)
@@ -47,9 +55,9 @@ namespace ApiApp.Controllers
 
         [Route("api/Customer/Cart")]
         [HttpGet]
-        public List<CartModel> GetCartByUsername(string uname)
+        public List<CartModel> GetCartByUsername()
         {
-
+            string uname = "cus1";
             return CartService.GetCartByUsername(uname);
         }
 
@@ -87,10 +95,11 @@ namespace ApiApp.Controllers
 
         [Route("api/Customer/Checkout")]
         [HttpPost]
-        public void Checkout()
+        public void Checkout(CheckoutModel c)
         {
-            string uname = "cus1";
-            OrderService.Checkout(uname);
+            string uname = c.Uname;
+            List<BookModel> od = c.Od;
+            OrderService.Checkout(uname, od);
         }
 
         //Order ###########################################
@@ -121,7 +130,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Customer/MyOrder/Cancel/{id}")]
-        [HttpGet]
+        [HttpPost]
         public void ReqCancel(int id)
         {
             OrderService.ReqCancel(id);
@@ -168,7 +177,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Customer/AddSupport")]
-        [HttpGet]
+        [HttpPost]
         public void AddSupport(SupportModel s)
         {
             SupportService.Add(s);

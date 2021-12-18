@@ -1,0 +1,21 @@
+<div ng-include="'views/inc/customer_nav.html'"></div>
+<div>
+  <h1>Transactions</h1>
+  
+  <h1>{{test}}</h1>
+
+    <table border="1">
+      <tr>
+        <th>Id</th>
+        <th>Shop Name</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+      <tr ng-repeat="p in MyTransactions">
+          <td>{{p.Id}}</td>
+          <td>{{p.ShopName}}</td>
+          <td>{{p.Amount}}</td>
+          <td>{{p.Date}}</td>
+      </tr>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+<div ng-include="'views/inc/customer_nav.html'"></div>
+<div>
+  <h1>My Cart</h1>
+  <a href="#!Customer/Home">Add More</a>
+  <a href="#!Customer/Cart/ClearCart">Clear All</a>
+  
+  <h1>{{test}}</h1>
+
+    <table border="1">
+      <tr>
+        <th>Shop Name</th>
+        <th>Book Id</th>
+        <th>Book Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      <tr ng-repeat="p in AllCarts">
+          <td>{{p.ShopName}}</td>
+          <td>{{p.Id}}</td>
+          <td>{{p.Title}}</td>
+          <td>{{p.Price}}</td>
+          <td>{{p.Quantity}}</td>
+          <td>
+              <a href="#!Customer/Cart/PlusCart/{{p.Id}}">Plus</a>
+              <a href="#!Customer/Cart/MinusCart/{{p.Id}}">Minus</a>
+              <a href="#!Customer/Cart/DeleteCart/{{p.Id}}">Delete</a>
+        </td>
+      </tr>
+    </table>
+    <a href="#!Customer/Cart/Checkout">Checkout</a>
+</div>

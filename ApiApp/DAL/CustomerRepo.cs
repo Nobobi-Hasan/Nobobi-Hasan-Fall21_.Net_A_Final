@@ -24,6 +24,28 @@ namespace DAL
 
         public void Delete(Customer e)
         {
+            var orders = (from o in db.Orders
+                          where o.CustomerName == e.Username
+                          select o).ToList();
+
+       
+            foreach (var o in orders)
+            {
+                var details = (from od in db.OrderDetails
+                               where od.OrderId == o.Id
+                               select od).ToList();
+
+                foreach (var d in details)
+                {
+                    db.OrderDetails.Remove(d);
+                    db.SaveChanges();
+                }
+                db.Orders.Remove(o);
+                db.SaveChanges();
+            }
+
+
+
             var n = db.Customers.FirstOrDefault(en => en.Username == e.Username);
             db.Customers.Remove(n);
             db.SaveChanges();

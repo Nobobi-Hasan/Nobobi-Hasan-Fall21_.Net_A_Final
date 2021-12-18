@@ -16,6 +16,7 @@ namespace DAL
 
         public void Add(Shop e)
         {
+            e.Status = "Pending";
             db.Shops.Add(e);
             db.SaveChanges();
         }
@@ -37,6 +38,18 @@ namespace DAL
 
         public void Delete(Shop e)
         {
+            var books = (from b in db.Books
+                          where b.ShopName == e.Username
+                          select b).ToList();
+
+            foreach (var b in books)
+            {
+                
+                db.Books.Remove(b);
+                db.SaveChanges();
+            }
+
+
             var n = db.Shops.FirstOrDefault(en => en.Username == e.Username);
             db.Shops.Remove(n);
             db.SaveChanges();

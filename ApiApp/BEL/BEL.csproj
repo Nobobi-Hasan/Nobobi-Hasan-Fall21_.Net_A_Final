@@ -44,6 +44,7 @@
     <Compile Include="AdminModel.cs" />
     <Compile Include="BookModel.cs" />
     <Compile Include="CartModel.cs" />
+    <Compile Include="CheckoutModel.cs" />
     <Compile Include="CustomerModel.cs" />
     <Compile Include="EmployeeModel.cs" />
     <Compile Include="OrderDetailModel.cs" />

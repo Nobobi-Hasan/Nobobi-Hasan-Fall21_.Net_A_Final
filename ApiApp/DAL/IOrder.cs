@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public interface IOrder<T, ID, Uname>
+    public interface IOrder<T, ID, Uname, Od>
     {
-        void Checkout(Uname uname);
+        void Checkout(Uname uname, Od Od);
         void ReqCancel(ID id);
         void ApproveCancel(ID id);
         void DeclineCancel(ID id);

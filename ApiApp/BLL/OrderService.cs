@@ -11,9 +11,17 @@ namespace BLL
 {
     public class OrderService
     {
-        public static void Checkout(string uname)
+        public static void Checkout(string uname, List<BookModel> od)
         {
-            DataAccessFactory.OrderDataAcess().Checkout(uname);
+            var config = new MapperConfiguration(c =>
+            {
+                c.CreateMap<BookModel, Book>();
+            });
+            var mapper = new Mapper(config);
+            var da = DataAccessFactory.OrderDataAcess();
+            var data = mapper.Map<List<Book>>(od);
+
+            DataAccessFactory.OrderDataAcess().Checkout(uname, data);
         }
 
         public static List<OrderModel> GetAllOrders()

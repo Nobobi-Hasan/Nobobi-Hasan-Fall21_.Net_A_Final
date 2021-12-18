@@ -89,7 +89,7 @@ namespace ApiApp.Controllers
         }
 
         [Route("api/Shop/AddSupport")]
-        [HttpGet]
+        [HttpPost]
         public void AddSupport(SupportModel s)
         {
             SupportService.Add(s);

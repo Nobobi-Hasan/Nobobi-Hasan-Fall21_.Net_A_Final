@@ -1,0 +1,19 @@
+<div ng-include="'views/inc/customer_nav.html'"></div>
+<div>
+  <h1>Cancelled Orders</h1>
+  
+  <h1>{{test}}</h1>
+
+    <table border="1">
+      <tr>
+        <th>Id</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+      <tr ng-repeat="p in MyCancelledOrders">
+          <td>{{p.Id}}</td>
+          <td>{{p.Amount}}</td>
+          <td>{{p.Status}}</td>
+      </tr>
+    </table>
+</div>

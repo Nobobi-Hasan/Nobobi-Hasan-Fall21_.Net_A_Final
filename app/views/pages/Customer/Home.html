@@ -1,8 +1,12 @@
-
+<div ng-include="'views/inc/customer_nav.html'"></div>
 <div>
   <h1>All Books</h1>
   <h1>{{test}}</h1>
   <h1>{{cart}}</h1>
+
+  <form class = "form-inline my-2 my-lg-o">
+    <h3>Search: </h3><input class="form-control mr-sm-2" type="search" ng-model = "search">
+  </form>
 
     <table border="1">
       <tr>
@@ -17,7 +21,7 @@
         <th>Thumbnail</th>
         <th>Action</th>
       </tr>
-      <tr ng-repeat="p in AllBooks">
+      <tr ng-repeat="p in AllBooks | filter:search">
           <td>{{p.Id}}</td>
           <td>{{p.Title}}</td>
           <td>{{p.Author}}</td>

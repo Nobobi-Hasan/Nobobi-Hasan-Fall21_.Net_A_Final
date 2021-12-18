@@ -162,14 +162,14 @@ namespace ApiApp.Controllers
         }
 
         [Route("api/Admin/ApproveShop/{uname}")]
-        [HttpGet]
+        [HttpPost]
         public void ApproveShop(string uname)
         {
             ShopService.ApproveShop(uname);
         }
 
         [Route("api/Admin/DeclineShop/{uname}")]
-        [HttpGet]
+        [HttpPost]
         public void DeclineShop(string uname)
         {
             ShopService.DeclineShop(uname);
@@ -225,14 +225,14 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Admin/ApproveSalary/{id}")]
-        [HttpGet]
+        [HttpPost]
         public void ApproveSalary(int id)
         {
             SalaryService.Approve(id);
         }
 
         [Route("api/Admin/DeclineSalary/{id}")]
-        [HttpGet]
+        [HttpPost]
         public void DeclineSalary(int id)
         {
             SalaryService.Decline(id);

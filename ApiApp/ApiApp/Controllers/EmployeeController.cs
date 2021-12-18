@@ -43,7 +43,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Employee/CancelRequest/Approve/{id}")]
-        [HttpGet]
+        [HttpPost]
         public void ApproveCancel(int id)
         {
             OrderService.ApproveCancel(id);
@@ -51,7 +51,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Employee/CancelRequest/Decline/{id}")]
-        [HttpGet]
+        [HttpPost]
         public void DeclineCancel(int id)
         {
             OrderService.DeclineCancel(id);
@@ -80,7 +80,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Employee/AddSalary")]
-        [HttpGet]
+        [HttpPost]
         public void AddSalary(SalaryModel s)
         {
             SalaryService.Add(s);
@@ -99,7 +99,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Employee/AddStatement")]
-        [HttpGet]
+        [HttpPost]
         public void AddStatement(StatementModel s)
         {
             StatementService.Add(s);
@@ -118,7 +118,7 @@ namespace ApiApp.Controllers
 
 
         [Route("api/Employee/AddTransaction")]
-        [HttpGet]
+        [HttpPost]
         public void AddTransaction(TransactionModel s)
         {
             TransactionService.Add(s);
@@ -129,7 +129,7 @@ namespace ApiApp.Controllers
         //Support ###########################################
 
         [Route("api/Employee/AddSupport")]
-        [HttpGet]
+        [HttpPost]
         public void AddSupport(SupportModel s)
         {
             SupportService.Add(s);

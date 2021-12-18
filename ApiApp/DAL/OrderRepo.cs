@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class OrderRepo : IOrder<Order, int, string>
+    class OrderRepo : IOrder<Order, int, string, List<Book>>
     {
         KetabKhanaFEntities db;
         public OrderRepo(KetabKhanaFEntities db)
@@ -16,16 +16,14 @@ namespace DAL
 
 
 
-        public void Checkout(string uname)
+        public void Checkout(string uname, List<Book> Od)
         {
-            var entity = (from e in db.Carts
-                          where e.CustomerName == uname
-                          select e).ToList();
+            var entity = Od;
             var x = 0.0;
 
             foreach (var c in entity)
             {
-                x += (float)c.UnitPrice * (float)c.Quantity;
+                x += (float)c.Price * (float)c.Quantity;
             }
 
             Order o = new Order();
@@ -41,8 +39,9 @@ namespace DAL
                 var od = new OrderDetail()
                 {
                     OrderId = o.Id,
-                    BookId = c.BookId,
-                    UnitPrice = c.UnitPrice,
+                    BookId = c.Id,
+                    BookName = c.Title,
+                    UnitPrice = c.Price,
                     Quantity = c.Quantity,
                     ShopName = c.ShopName,
                     Status = "Ordered"
@@ -52,7 +51,7 @@ namespace DAL
 
 
                 var book = (from bo in db.Books
-                            where bo.Id == c.BookId
+                            where bo.Id == c.Id
                             select bo).FirstOrDefault();
 
 
@@ -84,7 +83,7 @@ namespace DAL
         public List<Order> GetAllCanceledOrders()
         {
             var entity = (from e in db.Orders
-                          where e.Status == "Canceled"
+                          where e.Status == "Cancelled"
                           select e).ToList();
             return entity;
         }
@@ -106,7 +105,7 @@ namespace DAL
         {
             var entity = (from e in db.Orders
                           where e.CustomerName == uname
-                          && e.Status == "Canceled"
+                          && e.Status == "Cancelled"
                           select e).ToList();
             return entity;
         }
@@ -129,7 +128,7 @@ namespace DAL
                          where o.Id == id
                          select o).FirstOrDefault();
 
-            order.Status = "Canceled";
+            order.Status = "Cancelled";
             db.SaveChanges();
 
 
