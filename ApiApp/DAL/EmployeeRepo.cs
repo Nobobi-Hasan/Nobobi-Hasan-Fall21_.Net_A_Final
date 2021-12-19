@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class EmployeeRepo : IRepo<Employee, string, string>
+    public class EmployeeRepo : IRepo<Employee, string, string>, IAuth
     {
         KetabKhanaFEntities db;
         public EmployeeRepo(KetabKhanaFEntities db)
@@ -58,6 +58,38 @@ namespace DAL
         }
 
         public List<Employee> GetByUsername(string src)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        //IAuth ############################################
+        public Token Authenticate(Login user)
+        {
+            var u = db.Employees.FirstOrDefault(en => en.Username == user.Username
+            && en.Password == user.Password);
+            Token t = null;
+            if (u != null)
+            {
+                string token = Guid.NewGuid().ToString();
+                t = new Token();
+                t.UserName = u.Username;
+                t.Type = "Employee";
+                t.AccessToken = token;
+                t.CreatedAt = DateTime.Now;
+                db.Tokens.Add(t);
+                db.SaveChanges();
+            }
+            return t;
+        }
+
+        public bool IsAuthenticated(string token)
+        {
+            var rs = db.Tokens.Any(e => e.AccessToken == token && e.ExpiredAt == null && e.Type == "Employee");
+            return rs;
+        }
+
+        public void Logout(string token)
         {
             throw new NotImplementedException();
         }

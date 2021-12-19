@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminService.cs" />
+    <Compile Include="AuthService.cs" />
     <Compile Include="BookService.cs" />
     <Compile Include="CartService.cs" />
     <Compile Include="Class1.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="ShopService.cs" />
     <Compile Include="StatementService.cs" />
     <Compile Include="SupportService.cs" />
+    <Compile Include="TokenService.cs" />
     <Compile Include="TransactionService.cs" />
   </ItemGroup>
   <ItemGroup>

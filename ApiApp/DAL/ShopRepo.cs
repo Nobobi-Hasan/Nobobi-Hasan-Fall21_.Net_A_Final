@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ShopRepo : IShop<Shop, string>
+    public class ShopRepo : IShop<Shop, string>, IAuth
     {
         KetabKhanaFEntities db;
         public ShopRepo(KetabKhanaFEntities db)
@@ -88,8 +88,40 @@ namespace DAL
                                select s).ToList();
             return shops;
         }
-        
 
-        
+
+
+        //IAuth ############################################
+        public Token Authenticate(Login user)
+        {
+            var u = db.Shops.FirstOrDefault(en => en.Username == user.Username
+            && en.Password == user.Password);
+            Token t = null;
+            if (u != null)
+            {
+                string token = Guid.NewGuid().ToString();
+                t = new Token();
+                t.UserName = u.Username;
+                t.Type = "Shop";
+                t.AccessToken = token;
+                t.CreatedAt = DateTime.Now;
+                db.Tokens.Add(t);
+                db.SaveChanges();
+            }
+            return t;
+        }
+
+        public bool IsAuthenticated(string token)
+        {
+            var rs = db.Tokens.Any(e => e.AccessToken == token && e.ExpiredAt == null && e.Type == "Shop");
+            return rs;
+        }
+
+        public void Logout(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

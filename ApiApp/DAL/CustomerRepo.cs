@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class CustomerRepo : IRepo<Customer, string, string>
+    public class CustomerRepo : IRepo<Customer, string, string>, IAuth
     {
         KetabKhanaFEntities db;
         public CustomerRepo(KetabKhanaFEntities db)
@@ -87,6 +87,35 @@ namespace DAL
         }
 
 
+        //IAuth ############################################
+        public Token Authenticate(Login user)
+        {
+            var u = db.Customers.FirstOrDefault(en => en.Username == user.Username
+            && en.Password == user.Password);
+            Token t = null;
+            if (u != null)
+            {
+                string token = Guid.NewGuid().ToString();
+                t = new Token();
+                t.UserName = u.Username;
+                t.Type = "Customer";
+                t.AccessToken = token;
+                t.CreatedAt = DateTime.Now;
+                db.Tokens.Add(t);
+                db.SaveChanges();
+            }
+            return t;
+        }
 
+        public bool IsAuthenticated(string token)
+        {
+            var rs = db.Tokens.Any(e => e.AccessToken == token && e.ExpiredAt == null && e.Type == "Customer");
+            return rs;
+        }
+
+        public void Logout(string token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

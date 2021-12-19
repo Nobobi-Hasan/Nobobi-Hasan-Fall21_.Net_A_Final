@@ -69,6 +69,7 @@
       <DependentUpon>KetabKhanaF.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeRepo.cs" />
+    <Compile Include="IAuth.cs" />
     <Compile Include="IBook.cs" />
     <Compile Include="ICart.cs" />
     <Compile Include="IOrder.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="IRepo.cs" />
     <Compile Include="ISalary.cs" />
     <Compile Include="IShop.cs" />
+    <Compile Include="IToken.cs" />
     <Compile Include="KetabKhanaF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KetabKhanaF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>KetabKhanaF.tt</DependentUpon>
     </Compile>
@@ -119,6 +122,7 @@
     <Compile Include="Token.cs">
       <DependentUpon>KetabKhanaF.tt</DependentUpon>
     </Compile>
+    <Compile Include="TokenRepo.cs" />
     <Compile Include="Transaction.cs">
       <DependentUpon>KetabKhanaF.tt</DependentUpon>
     </Compile>

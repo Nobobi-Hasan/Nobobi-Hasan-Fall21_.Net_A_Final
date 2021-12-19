@@ -79,6 +79,33 @@ namespace DAL
         }
 
 
+        public static IToken<Token, string> TokenDataAccess()
+        {
+            return new TokenRepo(db);
+        }
+
+
+        //Auth ###############################################################################
+        public static IAuth AdminAuthDataAccess()
+        {
+            return new AdminRepo(db);
+        }
+
+        public static IAuth CustomerAuthDataAccess()
+        {
+            return new CustomerRepo(db);
+        }
+
+        public static IAuth EmployeeAuthDataAccess()
+        {
+            return new EmployeeRepo(db);
+        }
+
+        public static IAuth ShopAuthDataAccess()
+        {
+            return new ShopRepo(db);
+        }
+
 
 
 

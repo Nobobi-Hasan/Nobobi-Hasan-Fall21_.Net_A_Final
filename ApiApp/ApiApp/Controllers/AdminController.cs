@@ -1,4 +1,5 @@
-﻿using BEL;
+﻿using ApiApp.Auth;
+using BEL;
 using BLL;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
+
 namespace ApiApp.Controllers
 {
     [EnableCors("*", "*", "*")]
+    
     public class AdminController : ApiController
     {
 
@@ -146,6 +149,7 @@ namespace ApiApp.Controllers
             ShopService.Delete(n);
         }
 
+        
         [Route("api/Admin/AllShops")]
         [HttpGet]
         public List<ShopModel> GetAllShops()
