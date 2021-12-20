@@ -1,4 +1,5 @@
-﻿using BEL;
+﻿using ApiApp.Auth;
+using BEL;
 using BLL;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ApiApp.Controllers
     {
 
         //Book #######################################################
-
+        [CustomShopAuth]
         [Route("api/Shop/Book/GetAll")]
         [HttpGet]
         public List<BookModel> GetAllBooks()
@@ -23,25 +24,28 @@ namespace ApiApp.Controllers
             return BookService.GetAll();
         }
 
+        [CustomShopAuth]
         [Route("api/Shop/Book/Add")]
         [HttpPost]
-        public void Add(BookModel b)
+        public void Add(BookShopModel data)
         {
-            //string uname = User.Identity.Name;
-            string uname = "shop1";
+            string uname = data.Uname;
+            BookModel b = data.book;
+
             b.ShopName = uname;
             BookService.Add(b);
         }
 
+        [CustomShopAuth]
         [Route("api/Shop/Book/GetByUsername")]
         [HttpGet]
-        public List<BookModel> GetByUsername()
+        public List<BookModel> GetByUsername(string uname)
         {
-            //string sName = User.Identity.Name;
-            string uname = "shop1";
+            //string uname = "shop1";
             return BookService.GetByUsername(uname);
         }
 
+        [CustomShopAuth]
         [Route("api/Shop/OneBook/{bId}")]
         [HttpGet]
         public BookModel OneBook(int bId)
@@ -50,7 +54,7 @@ namespace ApiApp.Controllers
             return BookService.GetOne(bId);
         }
 
-
+        [CustomShopAuth]
         [Route("api/Shop/Book/Edit")]
         [HttpPost]
         public void EditBook(BookModel b)
@@ -58,6 +62,7 @@ namespace ApiApp.Controllers
             BookService.Edit(b);
         }
 
+        [CustomShopAuth]
         [Route("api/Shop/Book/Delete")]
         [HttpPost]
         public void DeleteBook(BookModel b)
@@ -67,27 +72,27 @@ namespace ApiApp.Controllers
 
 
         //Order (Details) #######################################################
-
+        [CustomShopAuth]
         [Route("api/Shop/Orders/GetByUsername")]
         [HttpGet]
-        public List<OrderDetailModel> GetMyOrders()
+        public List<OrderDetailModel> GetMyOrders(string uname)
         {
-            //string sName = User.Identity.Name;
-            string uname = "shop1";
+            //string uname = "shop1";
             return OrderDetailService.GetByShopName(uname);
         }
 
 
         //Singels #######################################################
-
+        [CustomShopAuth]
         [Route("api/Shop/MyTransactions")]
         [HttpGet]
-        public List<TransactionModel> GetMyTransactions()
+        public List<TransactionModel> GetMyTransactions(string uname)
         {
-            string uname = "shop1";
+            //string uname = "shop1";
             return TransactionService.GetByShopName(uname);
         }
 
+        [CustomShopAuth]
         [Route("api/Shop/AddSupport")]
         [HttpPost]
         public void AddSupport(SupportModel s)
@@ -97,17 +102,16 @@ namespace ApiApp.Controllers
 
 
         //Profile ###########################################
-
+        [CustomShopAuth]
         [Route("api/Shop/Profile")]
         [HttpGet]
-        public ShopModel Profile()
+        public ShopModel Profile(string uname)
         {
-            //string uname = User.Identity.Name;
-            string uname = "shop1";
+            //string uname = "shop1";
             return ShopService.GetOneShop(uname);
         }
 
-
+        [CustomShopAuth]
         [Route("api/Shop/EditProfile")]
         [HttpPost]
         public void EditProfile(ShopModel n)
@@ -115,6 +119,7 @@ namespace ApiApp.Controllers
             ShopService.Edit(n);
         }
 
+        [CustomShopAuth]
         [Route("api/Shop/DeleteProfile")]
         [HttpPost]
         public void DeleteProfile(ShopModel n)

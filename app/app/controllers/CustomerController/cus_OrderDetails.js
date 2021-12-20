@@ -1,5 +1,5 @@
 app.controller("cus_OrderDetails",function($scope,ajax,$routeParams){
-    ajax.get("https://localhost:44348/api/Customer/MyOrder/Details/"+$routeParams.id,success,error);
+    ajax.get("api/Customer/MyOrder/Details/"+$routeParams.id,success,error);
     function success(response){
       $scope.OrderDetails=response.data;
       $scope.status = $routeParams.status;

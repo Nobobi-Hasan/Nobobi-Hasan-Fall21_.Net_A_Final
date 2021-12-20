@@ -1,5 +1,5 @@
 app.controller("cus_CancelReqOrder",function($scope, ajax,$routeParams, $location){
-    ajax.post("https://localhost:44348/api/Customer/MyOrder/Cancel/"+$routeParams.id,success,error);
+    ajax.post("api/Customer/MyOrder/Cancel/"+$routeParams.id,success,error);
       function success(response){
         $scope.testc="CancelCestSuccess";
         alert("Requested for cancellation");

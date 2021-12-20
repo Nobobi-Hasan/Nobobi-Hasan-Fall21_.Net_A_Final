@@ -92,7 +92,7 @@ namespace DAL
 
         }
 
-        public void Logout(string token)
+        public bool Logout(string token)
         {
             throw new NotImplementedException();
         }

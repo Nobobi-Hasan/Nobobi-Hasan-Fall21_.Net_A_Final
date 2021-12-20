@@ -8,7 +8,7 @@ app.controller("cus_AddSupport",function($scope,$http,ajax){
             Message: $scope.Message,
         }
 
-        ajax.post("https://localhost:44348/api/Customer/AddSupport", data, success, error)
+        ajax.post("api/Customer/AddSupport", data, success, error)
         function success(response){
             alert("Message Sent");
         }

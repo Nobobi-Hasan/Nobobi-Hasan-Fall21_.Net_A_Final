@@ -1,4 +1,5 @@
-﻿using BEL;
+﻿using ApiApp.Auth;
+using BEL;
 using BLL;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ApiApp.Controllers
     {
 
         //Order ###########################################
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AllOrders")]
         [HttpGet]
         public List<OrderModel> GetAllOrders()
@@ -24,6 +25,7 @@ namespace ApiApp.Controllers
             return OrderService.GetAllOrders();
         }
 
+        [CustomEmployeeAuth]
         [Route("api/Employee/OrderDetail/{id}")]
         [HttpGet]
         public List<OrderDetailModel> GetOrderDetail(int id)
@@ -32,7 +34,7 @@ namespace ApiApp.Controllers
             return OrderDetailService.GetDetail(id);
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/GetAllCancelRequestOrders")]
         [HttpGet]
         public List<OrderModel> GetAllCancelRequestOrders()
@@ -41,7 +43,7 @@ namespace ApiApp.Controllers
             return OrderService.GetAllCancelRequestOrders();
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/CancelRequest/Approve/{id}")]
         [HttpPost]
         public void ApproveCancel(int id)
@@ -49,7 +51,7 @@ namespace ApiApp.Controllers
             OrderService.ApproveCancel(id);
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/CancelRequest/Decline/{id}")]
         [HttpPost]
         public void DeclineCancel(int id)
@@ -58,7 +60,7 @@ namespace ApiApp.Controllers
         }
 
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AllCanceledOrders")]
         [HttpGet]
         public List<OrderModel> GetAllCanceledOrders()
@@ -69,7 +71,7 @@ namespace ApiApp.Controllers
 
 
         //Salary ###########################################
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/ApprovedSalary")]
         [HttpGet]
         public List<SalaryModel> GetApprovedSalaries()
@@ -78,7 +80,7 @@ namespace ApiApp.Controllers
             return SalaryService.GetApproved();
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AddSalary")]
         [HttpPost]
         public void AddSalary(SalaryModel s)
@@ -88,7 +90,7 @@ namespace ApiApp.Controllers
 
 
         //Statement ###########################################
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AllStatements")]
         [HttpGet]
         public List<StatementModel> GetAllStatements()
@@ -97,7 +99,7 @@ namespace ApiApp.Controllers
             return StatementService.GetAll();
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AddStatement")]
         [HttpPost]
         public void AddStatement(StatementModel s)
@@ -107,7 +109,7 @@ namespace ApiApp.Controllers
 
 
         //Transaction ###########################################
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AllTransactions")]
         [HttpGet]
         public List<TransactionModel> GetAllTransactions()
@@ -116,7 +118,7 @@ namespace ApiApp.Controllers
             return TransactionService.GetAll();
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AddTransaction")]
         [HttpPost]
         public void AddTransaction(TransactionModel s)
@@ -127,7 +129,7 @@ namespace ApiApp.Controllers
 
 
         //Support ###########################################
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/AddSupport")]
         [HttpPost]
         public void AddSupport(SupportModel s)
@@ -136,24 +138,23 @@ namespace ApiApp.Controllers
         }
 
         //Profile ###########################################
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/Profile")]
         [HttpGet]
-        public EmployeeModel Profile()
+        public EmployeeModel Profile(string uname)
         {
-            //string uname = User.Identity.Name;
-            string uname = "emp1";
+            //string uname = "emp1";
             return EmployeeService.GetOne(uname);
         }
 
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/EditProfile")]
         [HttpPost]
         public void EditProfile(EmployeeModel n)
         {
             EmployeeService.Edit(n);
         }
-
+        [CustomEmployeeAuth]
         [Route("api/Employee/DeleteProfile")]
         [HttpPost]
         public void DeleteProfile(EmployeeModel n)

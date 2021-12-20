@@ -75,5 +75,13 @@ namespace ApiApp.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, GetOneShop(uname));
         }
 
+
+        [Route("api/Book/GetAll")]
+        [HttpGet]
+        public List<BookModel> GetAllBooks()
+        {
+            return BookService.GetAll();
+        }
+
     }
 }

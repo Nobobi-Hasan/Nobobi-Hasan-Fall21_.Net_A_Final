@@ -52,7 +52,7 @@ namespace BLL
             }
             else if (resultE != null)
             {
-                token = mapper.Map<TokenModel>(resultE);
+                token = mapper2.Map<TokenModel>(resultE);
             }
             else
             {
@@ -90,6 +90,13 @@ namespace BLL
             }
             else
                 return "Not Found";
+
+
+        }
+
+        public static bool Logout(String token)
+        {
+            return DataAccessFactory.CustomerAuthDataAccess().Logout(token);
 
 
         }

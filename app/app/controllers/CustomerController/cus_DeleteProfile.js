@@ -1,6 +1,6 @@
 app.controller("cus_DeleteProfile",function($scope,$http,ajax,$location){
 
-    ajax.get("https://localhost:44348/api/Customer/Profile",success,error);
+    ajax.get("api/Customer/Profile?uname="+localStorage.getItem("user"),success,error);
     function success(response){
       $scope.Id=response.data.Id;
       $scope.FirstName=response.data.FirstName;
@@ -32,7 +32,7 @@ app.controller("cus_DeleteProfile",function($scope,$http,ajax,$location){
             Password: $scope.Password,
         }
 
-        ajax.post("https://localhost:44348/api/Customer/DeleteProfile", data, success, error)
+        ajax.post("Customer/DeleteProfile", data, success, error)
         function success(response){
             alert("Profile Deleted");
             $location.path("/")

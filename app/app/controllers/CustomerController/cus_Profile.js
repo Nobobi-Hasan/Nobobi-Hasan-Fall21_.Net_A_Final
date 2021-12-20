@@ -1,6 +1,6 @@
 app.controller("cus_Profile",function($scope,$http,ajax){
 
-    ajax.get("https://localhost:44348/api/Customer/Profile",success,error);
+    ajax.get("api/Customer/Profile?uname="+localStorage.getItem("user"),success,error);
     function success(response){
       $scope.Id=response.data.Id;
       $scope.FirstName=response.data.FirstName;
@@ -32,7 +32,7 @@ app.controller("cus_Profile",function($scope,$http,ajax){
             Password: $scope.Password,
         }
 
-        ajax.post("https://localhost:44348/api/Customer/EditProfile", data, success, error)
+        ajax.post("api/Customer/EditProfile", data, success, error)
         function success(response){
             alert("Profile Updated");
         }

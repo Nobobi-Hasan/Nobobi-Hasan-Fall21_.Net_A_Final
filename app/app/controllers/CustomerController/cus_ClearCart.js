@@ -1,6 +1,6 @@
 app.controller("cus_ClearCart",function($routeParams, $location){
 
-    localStorage.clear("cart");
+    localStorage.removeItem("cart");
     $location.path("/Customer/Cart");
     
 

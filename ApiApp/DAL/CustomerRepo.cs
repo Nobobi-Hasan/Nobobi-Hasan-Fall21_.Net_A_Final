@@ -19,7 +19,6 @@ namespace DAL
             db.Customers.Add(e);
             db.SaveChanges();
         }
-
         
 
         public void Delete(Customer e)
@@ -113,9 +112,16 @@ namespace DAL
             return rs;
         }
 
-        public void Logout(string token)
+        public bool Logout(string token)
         {
-            throw new NotImplementedException();
+            var t = db.Tokens.FirstOrDefault(e => e.AccessToken == token);
+            if(t!=null)
+            {
+                t.ExpiredAt = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

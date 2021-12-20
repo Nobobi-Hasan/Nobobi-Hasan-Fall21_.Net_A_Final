@@ -1,5 +1,5 @@
 app.controller("cus_AddCart",function($scope,$http,ajax,$routeParams, $location){
-    ajax.get("https://localhost:44348/api/Customer/OneBook/"+$routeParams.id ,success,error);
+    ajax.get("api/Customer/OneBook/"+$routeParams.id ,success,error);
     function success(response){
 
         console.log(response.data);

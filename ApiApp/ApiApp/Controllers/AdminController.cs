@@ -18,17 +18,15 @@ namespace ApiApp.Controllers
     {
 
         // Admin ###################################
-
+        [CustomAdminAuth]
         [Route("api/Admin/CreateAdmin")]
         [HttpPost]
         public void AddAdmin(AdminModel n)
         {
-            //string sId = User.Identity.Name;
-            //int id = Int32.Parse(sId);
-            //n.SupervisorId = id;
             AdminService.Add(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/EditAdmin")]
         [HttpPost]
         public void EditAdmin(AdminModel n)
@@ -36,6 +34,7 @@ namespace ApiApp.Controllers
             AdminService.Edit(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeleteAdmin")]
         [HttpPost]
         public void DeleteAdmin(AdminModel n)
@@ -43,6 +42,7 @@ namespace ApiApp.Controllers
             AdminService.Delete(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/AllAdmins")]
         [HttpGet]
         public List<AdminModel> GetAllAdmins()
@@ -51,6 +51,7 @@ namespace ApiApp.Controllers
             return AdminService.GetAll();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/GetOneAdmin/{uname}")]
         [HttpGet]
         public AdminModel GetOneAdmin(string uname)
@@ -60,7 +61,7 @@ namespace ApiApp.Controllers
 
 
         // Employee ###################################
-
+        [CustomAdminAuth]
         [Route("api/Admin/CreateEmployee")]
         [HttpPost]
         public void AddEmployee(EmployeeModel n)
@@ -68,6 +69,7 @@ namespace ApiApp.Controllers
             EmployeeService.Add(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/EditEmployee")]
         [HttpPost]
         public void EditEmployee(EmployeeModel n)
@@ -75,6 +77,7 @@ namespace ApiApp.Controllers
             EmployeeService.Edit(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeleteEmployee")]
         [HttpPost]
         public void DeleteEmployee(EmployeeModel n)
@@ -82,6 +85,7 @@ namespace ApiApp.Controllers
             EmployeeService.Delete(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/AllEmployees")]
         [HttpGet]
         public List<EmployeeModel> GetAllEmployees()
@@ -90,6 +94,7 @@ namespace ApiApp.Controllers
             return EmployeeService.GetAll();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/GetOneEmployee/{uname}")]
         [HttpGet]
         public EmployeeModel GetOneEmployee(string uname)
@@ -100,7 +105,7 @@ namespace ApiApp.Controllers
 
         // Customer ###################################
 
-
+        [CustomAdminAuth]
         [Route("api/Admin/EditCustomer")]
         [HttpPost]
         public void EditCustomer(CustomerModel n)
@@ -108,6 +113,7 @@ namespace ApiApp.Controllers
             CustomerService.Edit(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeleteCustomer")]
         [HttpPost]
         public void DeleteCustomer(CustomerModel n)
@@ -115,6 +121,7 @@ namespace ApiApp.Controllers
             CustomerService.Delete(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/AllCustomers")]
         [HttpGet]
         public List<CustomerModel> GetAllCustomers()
@@ -123,6 +130,7 @@ namespace ApiApp.Controllers
             return CustomerService.GetAll();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/GetOneCustomer/{uname}")]
         [HttpGet]
         public CustomerModel GetOneCustomer(string uname)
@@ -134,7 +142,7 @@ namespace ApiApp.Controllers
 
 
         // Shop ###################################
-
+        [CustomAdminAuth]
         [Route("api/Admin/EditShop")]
         [HttpPost]
         public void EditShop(ShopModel n)
@@ -142,6 +150,7 @@ namespace ApiApp.Controllers
             ShopService.Edit(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeleteShop")]
         [HttpPost]
         public void DeleteShop(ShopModel n)
@@ -149,7 +158,7 @@ namespace ApiApp.Controllers
             ShopService.Delete(n);
         }
 
-        
+        [CustomAdminAuth]
         [Route("api/Admin/AllShops")]
         [HttpGet]
         public List<ShopModel> GetAllShops()
@@ -158,6 +167,7 @@ namespace ApiApp.Controllers
             return ShopService.GetAllShops();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/GetOneShop/{uname}")]
         [HttpGet]
         public ShopModel GetOneShop(string uname)
@@ -165,6 +175,7 @@ namespace ApiApp.Controllers
             return ShopService.GetOneShop(uname);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/ApproveShop/{uname}")]
         [HttpPost]
         public void ApproveShop(string uname)
@@ -172,6 +183,7 @@ namespace ApiApp.Controllers
             ShopService.ApproveShop(uname);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeclineShop/{uname}")]
         [HttpPost]
         public void DeclineShop(string uname)
@@ -179,6 +191,7 @@ namespace ApiApp.Controllers
             ShopService.DeclineShop(uname);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/ApprovedShops")]
         [HttpGet]
         public List<ShopModel> GetApprovedShop()
@@ -186,8 +199,8 @@ namespace ApiApp.Controllers
 
             return ShopService.GetApprovedShop();
         }
-        
 
+        [CustomAdminAuth]
         [Route("api/Admin/PendingShop")]
         [HttpGet]
         public List<ShopModel> GetPendingShop()
@@ -199,7 +212,7 @@ namespace ApiApp.Controllers
 
         //Books #############################
 
-
+        [CustomAdminAuth]
         [Route("api/Admin/AllBooks")]
         [HttpGet]
         public List<BookModel> GetAllBooks()
@@ -210,7 +223,7 @@ namespace ApiApp.Controllers
 
 
         //Salary #############################
-
+        [CustomAdminAuth]
         [Route("api/Admin/ApprovedSalary")]
         [HttpGet]
         public List<SalaryModel> GetApprovedSalary()
@@ -219,6 +232,7 @@ namespace ApiApp.Controllers
             return SalaryService.GetApproved();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/PendingSalary")]
         [HttpGet]
         public List<SalaryModel> GetPendingSalary()
@@ -227,7 +241,7 @@ namespace ApiApp.Controllers
             return SalaryService.GetPending();
         }
 
-
+        [CustomAdminAuth]
         [Route("api/Admin/ApproveSalary/{id}")]
         [HttpPost]
         public void ApproveSalary(int id)
@@ -235,6 +249,7 @@ namespace ApiApp.Controllers
             SalaryService.Approve(id);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeclineSalary/{id}")]
         [HttpPost]
         public void DeclineSalary(int id)
@@ -244,7 +259,7 @@ namespace ApiApp.Controllers
 
 
         //Order ###########################################
-
+        [CustomAdminAuth]
         [Route("api/Admin/AllOrders")]
         [HttpGet]
         public List<OrderModel> GetAllOrders()
@@ -253,6 +268,7 @@ namespace ApiApp.Controllers
             return OrderService.GetAllOrders();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/OrderDetail/{id}")]
         [HttpGet]
         public List<OrderDetailModel> GetOrderDetail(int id)
@@ -263,6 +279,8 @@ namespace ApiApp.Controllers
 
 
         //Singels ###########################################
+
+        [CustomAdminAuth]
         [Route("api/Admin/AllTransactions")]
         [HttpGet]
         public List<TransactionModel> GetAllTransactions()
@@ -271,6 +289,7 @@ namespace ApiApp.Controllers
             return TransactionService.GetAll();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/AllStatements")]
         [HttpGet]
         public List<StatementModel> GetAllStatements()
@@ -279,6 +298,7 @@ namespace ApiApp.Controllers
             return StatementService.GetAll();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/AllSupport")]
         [HttpGet]
         public List<SupportModel> GetAllSupport()
@@ -287,16 +307,16 @@ namespace ApiApp.Controllers
             return SupportService.GetAll();
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/Profile")]
         [HttpGet]
-        public AdminModel Profile()
+        public AdminModel Profile(string uname)
         {
-            //string uname = User.Identity.Name;
-            string uname = "admin1";
+            //string uname = "admin1";
             return AdminService.GetOne(uname);
         }
 
-
+        [CustomAdminAuth]
         [Route("api/Admin/EditProfile")]
         [HttpPost]
         public void EditProfile(AdminModel n)
@@ -304,6 +324,7 @@ namespace ApiApp.Controllers
             AdminService.Edit(n);
         }
 
+        [CustomAdminAuth]
         [Route("api/Admin/DeleteProfile")]
         [HttpPost]
         public void DeleteProfile(AdminModel n)

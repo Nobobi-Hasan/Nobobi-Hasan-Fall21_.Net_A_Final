@@ -95,7 +95,7 @@ namespace DAL
         public Token Authenticate(Login user)
         {
             var u = db.Shops.FirstOrDefault(en => en.Username == user.Username
-            && en.Password == user.Password);
+            && en.Password == user.Password && en.Status == "Approved");
             Token t = null;
             if (u != null)
             {
@@ -117,11 +117,9 @@ namespace DAL
             return rs;
         }
 
-        public void Logout(string token)
+        public bool Logout(string token)
         {
             throw new NotImplementedException();
         }
-
-
     }
 }

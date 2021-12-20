@@ -1,4 +1,5 @@
-﻿using BEL;
+﻿using ApiApp.Auth;
+using BEL;
 using BLL;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace ApiApp.Controllers
     {
 
         //Book #########################################################
-
+        [CustomCustomerAuth]
         [Route("api/Customer/AllBooks")]
         [HttpGet]
         public List<BookModel> GetAllBooks()
@@ -25,6 +26,7 @@ namespace ApiApp.Controllers
             return BookService.GetAll();
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/OneBook/{bId}")]
         [HttpGet]
         public BookModel OneBook(int bId)
@@ -33,16 +35,18 @@ namespace ApiApp.Controllers
             return BookService.GetOne(bId);
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/AddToCart/{bId}")]
         [HttpPost]
         public void AddToCart(int bId)
         {
-            string uname = "cus1";
+            var uname = Request.Headers.UserAgent.ToString();
+            //string uname = "cus1";
             CartService.AddToCart(bId, uname);
         }
 
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/SrcBook")]
         [HttpGet]
         public List<BookModel> SrcBook(string src)
@@ -52,7 +56,7 @@ namespace ApiApp.Controllers
 
 
         //Cart #########################################################
-
+        [CustomCustomerAuth]
         [Route("api/Customer/Cart")]
         [HttpGet]
         public List<CartModel> GetCartByUsername()
@@ -61,7 +65,7 @@ namespace ApiApp.Controllers
             return CartService.GetCartByUsername(uname);
         }
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/PlusCart/{id}")]
         [HttpPost]
         public void PlusCart(int id)
@@ -69,6 +73,7 @@ namespace ApiApp.Controllers
             CartService.PlusCart(id);
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/MinusCart/{id}")]
         [HttpPost]
         public void MinusCart(int id)
@@ -77,7 +82,7 @@ namespace ApiApp.Controllers
         }
 
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/DeleteCart/{id}")]
         [HttpPost]
         public void DeleteCart(int id)
@@ -85,6 +90,7 @@ namespace ApiApp.Controllers
             CartService.DeleteCart(id);
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/ClearCart")]
         [HttpPost]
         public void ClearCart()
@@ -93,6 +99,7 @@ namespace ApiApp.Controllers
             CartService.ClearCart(uname);
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/Checkout")]
         [HttpPost]
         public void Checkout(CheckoutModel c)
@@ -103,24 +110,25 @@ namespace ApiApp.Controllers
         }
 
         //Order ###########################################
-
+        [CustomCustomerAuth]
         [Route("api/Customer/MyOrders")]
         [HttpGet]
-        public List<OrderModel> GetMyOrders()
+        public List<OrderModel> GetMyOrders(string uname)
         {
-            string uname = "cus1";
+            //string uname = "cus1";
             return OrderService.GetOrderByCustomerName(uname);
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/MyCancelledOrders")]
         [HttpGet]
-        public List<OrderModel> MyCancelledOrders()
+        public List<OrderModel> MyCancelledOrders(string uname)
         {
-            string uname = "cus1";
+            //string uname = "cus1";
             return OrderService.GetCanceledOrderByCustomerName(uname);
         }
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/MyOrder/Details/{id}")]
         [HttpGet]
         public List<OrderDetailModel> GetMyOrderDetails(int id)
@@ -128,7 +136,7 @@ namespace ApiApp.Controllers
             return OrderDetailService.GetDetail(id);
         }
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/MyOrder/Cancel/{id}")]
         [HttpPost]
         public void ReqCancel(int id)
@@ -139,16 +147,16 @@ namespace ApiApp.Controllers
 
         //Profile ###########################################
 
+        [CustomCustomerAuth]
         [Route("api/Customer/Profile")]
         [HttpGet]
-        public CustomerModel Profile()
+        public CustomerModel Profile(string uname)
         {
-            //string uname = User.Identity.Name;
-            string uname = "cus1";
+            //string uname = "cus1";
             return CustomerService.GetOne(uname);
         }
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/EditProfile")]
         [HttpPost]
         public void EditProfile(CustomerModel n)
@@ -156,6 +164,7 @@ namespace ApiApp.Controllers
             CustomerService.Edit(n);
         }
 
+        [CustomCustomerAuth]
         [Route("api/Customer/DeleteProfile")]
         [HttpPost]
         public void DeleteProfile(CustomerModel n)
@@ -167,15 +176,16 @@ namespace ApiApp.Controllers
 
         //Singels ###########################################
 
+        [CustomCustomerAuth]
         [Route("api/Customer/MyTransactions")]
         [HttpGet]
-        public List<TransactionModel> GetMyTransactions()
+        public List<TransactionModel> GetMyTransactions(string uname)
         {
-            string uname = "cus1";
+            //string uname = "cus1";
             return TransactionService.GetByCustomerName(uname);
         }
 
-
+        [CustomCustomerAuth]
         [Route("api/Customer/AddSupport")]
         [HttpPost]
         public void AddSupport(SupportModel s)

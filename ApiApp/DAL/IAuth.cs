@@ -10,7 +10,7 @@ namespace DAL
     {
         Token Authenticate(Login user);
         bool IsAuthenticated(string token);
-        void Logout(string token);
+        bool Logout(string token);
 
     }
 }
