@@ -26,6 +26,7 @@ app.controller("ShopProfile",function($scope,$http,ajax){
             Email: $scope.Email,
             Username: $scope.Username,
             Password: $scope.Password,
+            Status: "Approved",
         }
 
         ajax.post("api/Shop/EditProfile", data, success, error)
